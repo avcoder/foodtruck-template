@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <% console.log('>>locals is: ', locals) %>
+    <h1><%= title %></h1>
+    <p><%= u.siteName %></p>
+    <p><%= u.dump(u.menu) %></p>
+    <p><%- u.icon("activity") %></p>
+    <p><%- u.datefns.format(new Date(), "'Today is a ', eeee") %></p>
+    <p><%= currentPath %></p>
+  </body>
+</html>
