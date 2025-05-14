@@ -3,8 +3,8 @@ dotenv.config();
 import { connect } from "./connect.js";
 
 // TODO: eventually import all our models here
-
 import "./models/userModel.js";
+import "./models/truckModel.js";
 
 // Connect to MongoDB
 try {
