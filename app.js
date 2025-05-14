@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import passport from "passport";
 import utils from "./utils/utils.js";
 import { router } from "./routes/router.js";
+import { notFound } from "./handlers/errorHandlers.js";
 import "./handlers/passport.js";
 
 // create express app
@@ -54,3 +55,5 @@ app.use((req, res, next) => {
 });
 
 app.use("/", router);
+
+app.use(notFound);

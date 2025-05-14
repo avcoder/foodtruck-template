@@ -1,5 +1,6 @@
 import { Router } from "express";
 import truckController from "../controllers/truckController.js";
+import { catchErrors } from "../handlers/errorHandlers.js";
 
 export const router = Router();
 
@@ -9,5 +10,5 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/add", truckController.addTruck);
-router.post("/add", truckController.createTruck);
+router.get("/add", catchErrors(truckController.addTruck));
+router.post("/add", catchErrors(truckController.createTruck));
