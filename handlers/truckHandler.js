@@ -5,6 +5,11 @@ const createTruck = async (truckData) => {
   return await Truck.create(truckData);
 };
 
+const getAllTrucks = async () => {
+  return await Truck.find().lean();
+};
+
 export default {
   createTruck,
+  getAllTrucks
 };

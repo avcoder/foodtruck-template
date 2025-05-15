@@ -10,5 +10,7 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/trucks", catchErrors(truckController.getTrucks));
+
 router.get("/add", catchErrors(truckController.addTruck));
 router.post("/add", catchErrors(truckController.createTruck));
