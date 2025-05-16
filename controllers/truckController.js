@@ -26,9 +26,24 @@ const getTrucks = async (req, res) => {
   res.render("trucks", { title: "All Trucks", trucks });
 };
 
+const editTruck = async (req, res) => {
+  const truck = await truckHandler.getOneTruck({ id: req.params.id });
+  res.render("editTruck", { title: `Edit ${truck.name}`, truck, tags: truck.tags });
+};
+
+const updateTruck = async (req, res) => {
+  const id = req.params.id;
+  const truckData = req.body;
+  const truck = await truckHandler.updateTruck(id, truckData);
+
+  res.redirect(`/trucks/${truck._id}/edit`)
+}
+
 export default {
   addTruck,
   createTruck,
   getTrucks,
   homePage,
+  updateTruck,
+  editTruck,
 };
