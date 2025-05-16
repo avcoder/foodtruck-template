@@ -1,16 +1,8 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
+<%- include('./partials/header.ejs', { title }) %>
+
+    <h1><%= title %></h1>
     <div class="container">
-        <div class="row">
-                <h1><%= title %></h1>
+        <div class="d-flex p-5 flex-wrap justify-content-evenly">
     
                 <% trucks.map(truck => { %>
                     <%- include('./components/truck.ejs', { truck })  %>
@@ -18,5 +10,5 @@
         </div>
     </div>
     <script src="/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+    
+<%- include('./partials/footer.ejs') %>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg fixed-top bg-primary"
+      data-bs-theme="dark"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="/">🚚 FoodTrucks</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarColor01"
+          aria-controls="navbarColor01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav ms-auto">
+            <% u.menu.map( menuItem => { %>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= menuItem.slug %>">
+                <span class="me-1 ms-3"><%- u.icon(menuItem.icon) %></span>
+                <%= menuItem.title %>
+                <!-- <span class="visually-hidden">(current)</span> -->
+              </a>
+            </li>
+            <% }) %>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">
+                <span class="me-1 ms-3"><%- u.icon("user-plus") %></span>
+                Register
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">
+                <span class="me-1 ms-3"><%- u.icon("log-in") %></span>
+                Login
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><span class="me-1 ms-3"><%- u.icon("user") %></span>Account</a
+              >
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="mt-5 py-4 mb-4 bg-dark-subtle">
+      <div class="container">
+        <div class="row">
+        <form class="col-lg-3 col-md-6 col-sm-12 d-flex">
+            <input
+              class="form-control me-sm-2"
+              type="search"
+              placeholder="Search"
+            />
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>

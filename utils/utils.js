@@ -21,17 +21,17 @@ const menu = [
   },
   {
     title: "Top",
-    icon: "top",
+    icon: "award",
     slug: "/top",
   },
   {
     title: "Add",
-    icon: "add",
+    icon: "plus-circle",
     slug: "/add",
   },
   {
     title: "Map",
-    icon: "map",
+    icon: "map-pin",
     slug: "/map",
   },
 ];

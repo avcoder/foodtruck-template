@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
+<%- include('./partials/header.ejs', { title }) %>
+
+<div class="container">
+  <div class="row">
     <h1><%= title %></h1>
 
     <form action="/add" method="POST">
@@ -18,7 +14,23 @@
       <% const choices = ['Cash only', 'Debit only', 'Online ordering',
       'Corporate lunches', 'Vegetarian'] %>
 
-      <ul>
+      <div class="mb-3 form-check">
+        <% choices.map((choice) => { %>
+          <div>
+            <input
+            class="form-check-input"
+            type="checkbox"
+            id="<%= choice %>"
+            name="tags"
+            value="<%= choice %>"
+          />
+          <label class="form-check-label" for="<%= choice %>"><%= choice %></label>
+          </div>
+        <% }) %>
+      </div>
+
+
+      <!-- <ul>
         <% choices.map((choice) => { %>
         <li>
           <input
@@ -30,10 +42,12 @@
           <label for="<%= choice %>"><%= choice %></label>
         </li>
         <% }) %>
-      </ul>
+      </ul> -->
 
       <br />
-      <button type="submit">Save</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-  </body>
-</html>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>

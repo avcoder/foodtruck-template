@@ -1,6 +1,16 @@
 <div class="card" style="width: 18rem">
-  <img  class="card-img-top" src="/images/<%= truck.photo || 'foodtruck.png' %>" alt="<%= truck.name %>" >
+  <img class="card-img-top" src="/images/<%= truck.photo || 'foodtruck.png' %>" alt="<%= truck.name %>" >
   <div class="card-body">
+    <div class="card-header d-flex justify-content-between">
+      <div class="d-flex justify-content-start">
+        <span><%- u.icon("star") %></span>
+        <span><%- u.icon("star") %></span>
+        <span><%- u.icon("star") %></span>
+        <span><%- u.icon("star") %></span>
+        <span><%- u.icon("star") %></span>
+      </div>
+      <div><%- u.icon("thumbs-up") %></div>
+    </div>
     <h5 class="card-title"><%= truck.name %></h5>
     <p class="card-text"><%= truck.description %></p>
     <a href="<%= truck.slug %>" class="btn btn-info">Details</a>

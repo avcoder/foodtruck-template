@@ -1,5 +1,10 @@
 import truckHandler from "../handlers/truckHandler.js";
 
+const homePage = async (req, res) => {
+  const trucks = await truckHandler.getAllTrucks();
+  res.render("home", { title: "Welcome to FoodTrucks", trucks });
+};
+
 const addTruck = async (req, res) => {
   res.render("addTruck", { title: "Add Truck" });
 };
@@ -18,5 +23,6 @@ const getTrucks = async (req, res) => {
 export default {
   addTruck,
   createTruck,
-  getTrucks
+  getTrucks,
+  homePage,
 };
