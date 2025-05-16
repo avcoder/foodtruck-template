@@ -6,7 +6,13 @@ const homePage = async (req, res) => {
 };
 
 const addTruck = async (req, res) => {
-  res.render("addTruck", { title: "Add Truck" });
+  res.render("addTruck", { title: "Add Truck", choices: [
+      "Cash only",
+      "Debit only",
+      "Online ordering",
+      "Corporate lunches",
+      "Vegetarian",
+    ], });
 };
 
 const createTruck = async (req, res) => {
