@@ -6,13 +6,16 @@ const homePage = async (req, res) => {
 };
 
 const addTruck = async (req, res) => {
-  res.render("addTruck", { title: "Add Truck", choices: [
+  res.render("addTruck", {
+    title: "Add Truck",
+    choices: [
       "Cash only",
       "Debit only",
       "Online ordering",
       "Corporate lunches",
       "Vegetarian",
-    ], });
+    ],
+  });
 };
 
 const createTruck = async (req, res) => {
@@ -28,7 +31,11 @@ const getTrucks = async (req, res) => {
 
 const editTruck = async (req, res) => {
   const truck = await truckHandler.getOneTruck({ id: req.params.id });
-  res.render("editTruck", { title: `Edit ${truck.name}`, truck, tags: truck.tags });
+  res.render("editTruck", {
+    title: `Edit ${truck.name}`,
+    truck,
+    tags: truck.tags,
+  });
 };
 
 const updateTruck = async (req, res) => {
@@ -36,8 +43,14 @@ const updateTruck = async (req, res) => {
   const truckData = req.body;
   const truck = await truckHandler.updateTruck(id, truckData);
 
-  res.redirect(`/trucks/${truck._id}/edit`)
-}
+  res.redirect(`/trucks/${truck._id}/edit`);
+};
+
+const deleteTruck = async (req, res) => {
+  const id = req.params.id;
+  const truck = await truckHandler.deleteTruck(id);
+  res.redirect("/");
+};
 
 export default {
   addTruck,
@@ -46,4 +59,5 @@ export default {
   homePage,
   updateTruck,
   editTruck,
+  deleteTruck,
 };

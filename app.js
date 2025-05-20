@@ -9,6 +9,7 @@ import passport from "passport";
 import utils from "./utils/utils.js";
 import { router } from "./routes/router.js";
 import { notFound } from "./handlers/errorHandlers.js";
+import methodOverride from "method-override";
 import "./handlers/passport.js";
 
 // create express app
@@ -24,14 +25,21 @@ app.set("views", path.join(__dirname, "views")); // views folder is where we kee
 app.use(express.static(path.join(__dirname, "public"))); // public folder is where we keep our static files
 
 // Bootstrap
-app.use("/css", express.static(path.join(__dirname, "node_modules/bootswatch/dist/sketchy")));
-app.use("/js", express.static(path.join(__dirname, "node_modules/bootstrap/dist/js")));
+app.use(
+  "/css",
+  express.static(path.join(__dirname, "node_modules/bootswatch/dist/sketchy"))
+);
+app.use(
+  "/js",
+  express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
+);
 
 // takes raw requests and sticks them onto req.body
 app.use(express.json());
 
 // for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 app.use(morgan("dev")); // logging middleware
 app.use(cookieParser()); // cookie parsing middleware
 

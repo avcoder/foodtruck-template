@@ -5,28 +5,29 @@ const createTruck = async (truckData) => {
   return await Truck.create(truckData);
 };
 
-const getOneTruck = async ({id}) => {
+const getOneTruck = async ({ id }) => {
   return await Truck.findOne({ _id: id }).lean();
-}
+};
 
 const getAllTrucks = async () => {
   return await Truck.find().lean();
 };
 
 const updateTruck = async (id, truckData) => {
-  return await Truck.findOneAndUpdate(
-    { _id: id },
-    truckData,
-    {
-      new: true,
-      runValidators: true,
-    }
-  ).lean();
-}
+  return await Truck.findOneAndUpdate({ _id: id }, truckData, {
+    new: true,
+    runValidators: true,
+  }).lean();
+};
+
+const deleteTruck = async (id) => {
+  return await Truck.findByIdAndDelete(id).lean();
+};
 
 export default {
   createTruck,
   getAllTrucks,
   updateTruck,
   getOneTruck,
+  deleteTruck,
 };

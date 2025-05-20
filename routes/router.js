@@ -15,3 +15,6 @@ router.post("/add", catchErrors(truckController.createTruck));
 // EDIT TRUCK
 router.get("/trucks/:id/edit", truckController.editTruck);
 router.post("/trucks/:id/edit", catchErrors(truckController.updateTruck));
+
+// DELETE TRUCK
+router.delete("/trucks/:id", catchErrors(truckController.deleteTruck));

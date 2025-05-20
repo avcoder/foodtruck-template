@@ -1,37 +1,51 @@
 <%- include('./partials/header.ejs', { title }) %>
 
-    <div class="container">
-      <table class="table table-striped table-hover">
-        <thead class="table-dark">
-          <tr>
-            <th scope="col">Truck Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Tags</th>
-            <th scope="col">Url</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% trucks.map(truck => { %>
-          <tr class="align-middle">
-            <th scope="row"><%= truck.name %></th>
-            <td><%= truck.description %></td>
-            <td><%= truck.tags.join(', ') %></td>
-            <td><a href="/<%= truck.slug %>">/<%= truck.slug %></a></td>
-            <td><a href="/trucks/<%= truck._id %>/edit" class="btn btn-info" tabindex="-1" role="button" >Edit</a></td>
-            <td><a href="#" class="btn btn-danger">Delete</a></td>
-          </tr>
-          <% }) %>
-        </tbody>
-      </table>
-    </div>
+<div class="container">
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Truck Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Tags</th>
+        <th scope="col">Url</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% trucks.map(truck => { %>
+      <tr class="align-middle">
+        <th scope="row"><%= truck.name %></th>
+        <td><%= truck.description %></td>
+        <td><%= truck.tags.join(', ') %></td>
+        <td><a href="/<%= truck.slug %>">/<%= truck.slug %></a></td>
+        <td>
+          <a
+            href="/trucks/<%= truck._id %>/edit"
+            class="btn btn-info"
+            tabindex="-1"
+            role="button"
+            >Edit</a
+          >
+        </td>
+        <td>
+          <form
+            method="POST"
+            action="/trucks/<%= truck._id %>?_method=DELETE"
+            onsubmit="return confirm('Are you sure?')"
+          >
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
 
-    <%- include('./partials/footer') %>
+<%- include('./partials/footer') %>
 
-
-
-    <!-- <% console.log('>>locals is: ', locals) %>
+<!-- <% console.log('>>locals is: ', locals) %>
     <h1><%= title %></h1>
     <p><%= u.siteName %></p>
     <p><%= u.dump(u.menu) %></p>
