@@ -1,4 +1,7 @@
 import truckHandler from "../handlers/truckHandler.js";
+import multer from "multer";
+import { Jimp } from "jimp";
+import { v4 as uuidv4 } from "uuid";
 
 const homePage = async (req, res) => {
   const trucks = await truckHandler.getAllTrucks();
@@ -52,6 +55,37 @@ const deleteTruck = async (req, res) => {
   res.redirect("/");
 };
 
+const multerOptions = {
+  storage: multer.memoryStorage(),
+  fileFilter: (req, file, next) => {
+    const isPhoto = file.mimetype.startsWith("image/");
+
+    if (isPhoto) {
+      next(null, true); // it's fine continue on, no error here
+    } else {
+      next({ message: "⚠️ That file type isn't allowed" }, false);
+    }
+  },
+};
+
+const upload = multer(multerOptions).single("photo");
+
+const resize = async (req, res, next) => {
+  // check if there is a file, and if there isn't call next
+  if (!req.file) {
+    return next(); // skip to the next middleware
+  }
+
+  // image/png = ['image', 'png']
+  const extension = req.file.mimetype.split("/")[1];
+
+  req.body.photo = `${uuidv4()}.${extension}`;
+  console.log("buffer ", req.file.buffer);
+  const photo = await Jimp.read(req.file.buffer);
+  await photo.write(`./public/uploads/${req.body.photo}`); // saves the image in uploads
+  next();
+};
+
 export default {
   addTruck,
   createTruck,
@@ -60,4 +94,6 @@ export default {
   updateTruck,
   editTruck,
   deleteTruck,
+  upload,
+  resize,
 };
