@@ -9,3 +9,12 @@ export const notFound = (req, res, next) => {
   err.status = 404;
   next(err);
 };
+
+export const flashValidationErrors = (err, req, res, next) => {
+  if (!err.errors) return next(err);
+
+  const errorKeys = Object.keys(err.errors);
+  console.log("my errorkeys: ", errorKeys);
+  errorKeys.forEach((key) => req.flash("error", err.errors[key].message));
+  res.redirect("/");
+};
