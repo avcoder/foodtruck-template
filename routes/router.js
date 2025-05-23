@@ -23,3 +23,6 @@ router.post("/trucks/:id/edit", catchErrors(truckController.updateTruck));
 
 // DELETE TRUCK
 router.delete("/trucks/:id", catchErrors(truckController.deleteTruck));
+
+// FOOD TRUCK (From slug)
+router.get("/foodtruck/:slug", catchErrors(truckController.getTruckBySlug))

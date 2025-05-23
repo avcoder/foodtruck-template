@@ -24,10 +24,15 @@ const deleteTruck = async (id) => {
   return await Truck.findByIdAndDelete(id).lean();
 };
 
+const getOneTruckBySlug = async ({ slug }) => {
+  return await Truck.findOne({ slug }).lean()
+}
+
 export default {
   createTruck,
   getAllTrucks,
   updateTruck,
   getOneTruck,
   deleteTruck,
+  getOneTruckBySlug,
 };

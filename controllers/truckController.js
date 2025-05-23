@@ -90,6 +90,14 @@ const resize = async (req, res, next) => {
   next();
 };
 
+const getTruckBySlug = async (req, res, next) => {
+  const truck = await truckHandler.getOneTruckBySlug({ slug: req.params.slug });
+
+  if (!truck) return next();
+
+  res.render("foodtruck", { title: `${truck.name}`, truck})
+}
+
 export default {
   addTruck,
   createTruck,
@@ -100,4 +108,5 @@ export default {
   deleteTruck,
   upload,
   resize,
+  getTruckBySlug,
 };
