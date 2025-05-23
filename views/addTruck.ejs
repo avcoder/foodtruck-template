@@ -24,9 +24,10 @@
         <label for="description" class="form-label">Description</label>
         <textarea class="form-control" name="description"></textarea>
       </div>
-      <div class="mb-3 form-check">
+
+     <div class="my-3 form-check row d-flex flex-wrap">
         <% choices.map((choice) => { %>
-        <div>
+        <div class="col mx-1">
           <input
             class="form-check-input"
             type="checkbox"
@@ -39,6 +40,42 @@
           >
         </div>
         <% }) %>
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input
+          type="text"
+          class="form-control dropdown-toggle"
+          id="location"
+          aria-describedby="location"
+          name="location[address]"
+          data-bs-toggle="dropdown"
+        />
+        <ul class="dropdown-menu col-3" id="suggestions"></ul>
+      </div>
+
+          <div class="my-3 row d-flex">
+        <div class="col">
+          <label for="latitude" class="form-label">Latitude</label>
+          <input
+            type="text"
+            class="form-control"
+            id="latitude"
+            aria-describedby="latitude"
+            name="location[coordinates][1]"
+          />
+        </div>
+        <div class="col">
+          <label for="longitude" class="form-label">Longitude</label>
+          <input
+            type="text"
+            class="form-control"
+            id="longitude"
+            aria-describedby="longitude"
+            name="location[coordinates][0]"
+          />
+        </div>
       </div>
 
       <div class="mb-3">
@@ -58,4 +95,9 @@
   </div>
 </div>
 
-<%- include('./partials/footer') %>
+<%- include('./partials/footeropen.ejs') %>
+
+<script type="module" src="/modules/autocomplete.js"></script>
+
+<%- include('./partials/footerclose.ejs') %>
+

@@ -3,6 +3,14 @@ import multer from "multer";
 import { Jimp } from "jimp";
 import { v4 as uuidv4 } from "uuid";
 
+const CHOICES = [
+      "Cash only",
+      "Debit only",
+      "Online ordering",
+      "Corporate lunches",
+      "Vegetarian",
+    ]
+
 const homePage = async (req, res) => {
   const trucks = await truckHandler.getAllTrucks();
   res.render("home", { title: "Welcome to FoodTrucks", trucks });
@@ -11,13 +19,7 @@ const homePage = async (req, res) => {
 const addTruck = async (req, res) => {
   res.render("addTruck", {
     title: "Add Truck",
-    choices: [
-      "Cash only",
-      "Debit only",
-      "Online ordering",
-      "Corporate lunches",
-      "Vegetarian",
-    ],
+    choices: CHOICES,
   });
 };
 

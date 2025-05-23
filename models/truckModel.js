@@ -17,7 +17,25 @@ const truckSchema = new mongoose.Schema({
   },
   tags: [String],
   photo: String,
-});
+  location: {
+    type: {
+      type: String,
+      default: "Point"
+    },
+    coordinates: [{
+      type: Number,
+      required: [true, "latitude and/or longitude are required"]
+    }],
+    timestamp: {
+      type: Date,
+      default: Date.now,
+    },
+    address: {
+      type: String,
+      required: [true, "address is required"]
+    }
+  }
+}, { timestamps: true });
 
 truckSchema.pre("save", function (next) {
   if (!this.isModified("name")) {
