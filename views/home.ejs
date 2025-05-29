@@ -19,6 +19,7 @@
         <td><%= truck.description %></td>
         <td><%= truck.tags.join(', ') %></td>
         <td><a href="/<%= truck.slug %>">/<%= truck.slug %></a></td>
+        <% if (user) { %>
         <td>
           <a
             href="/trucks/<%= truck._id %>/edit"
@@ -37,6 +38,10 @@
             <button class="btn btn-danger">Delete</button>
           </form>
         </td>
+        <% } else { %>
+          <td><button class="btn btn-light disabled">-</button></td>
+          <td><button class="btn btn-light disabled">-</button></td>
+        <% } %>
       </tr>
       <% }) %>
     </tbody>
@@ -52,3 +57,4 @@
     <p><%- u.icon("activity") %></p>
     <p><%- u.datefns.format(new Date(), "'Today is a ', eeee") %></p>
     <p><%= currentPath %></p> -->
+

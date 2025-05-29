@@ -1,10 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><%= title %></title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link
+      href="/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <nav
@@ -26,7 +30,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav ms-auto">
-            <% u.menu.map( menuItem => { %>
+            <% user && u.menu.map( menuItem => { %>
             <li class="nav-item">
               <a class="nav-link" href="<%= menuItem.slug %>">
                 <span class="me-1 ms-3"><%- u.icon(menuItem.icon) %></span>
@@ -47,6 +51,7 @@
                 Login
               </a>
             </li>
+            <% if (user) { %>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -65,6 +70,7 @@
                 <a class="dropdown-item" href="#">Separated link</a>
               </div>
             </li>
+            <% } %>
           </ul>
         </div>
       </div>
@@ -73,7 +79,7 @@
     <div class="mt-5 py-4 mb-4 bg-dark-subtle">
       <div class="container">
         <div class="row">
-        <form class="col-lg-3 col-md-6 col-sm-12 d-flex">
+          <form class="col-lg-3 col-md-6 col-sm-12 d-flex">
             <input
               class="form-control me-sm-2"
               type="search"
@@ -87,14 +93,19 @@
       </div>
     </div>
 
-    <% const categories = Object.keys(flashes) %>
-      <% categories.map((category) => { %>
-        <div class="container">
-          <% flashes[category].map((message) => { %>
-            <div class="alert alert-<%= category %> alert-dismissible" role="alert">
-              <%- message %>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          <% }) %>
-        </div>
+    <% const categories = Object.keys(flashes) %> <% categories.map((category) => { %>
+    <div class="container">
+      <% flashes[category].map((message) => { %>
+      <div class="alert alert-<%= category %> alert-dismissible" role="alert">
+        <%- message %>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
       <% }) %>
+    </div>
+    <% }) %>
+
