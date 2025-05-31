@@ -2,14 +2,15 @@ import truckHandler from "../handlers/truckHandler.js";
 import multer from "multer";
 import { Jimp } from "jimp";
 import { v4 as uuidv4 } from "uuid";
+import sanitize from "sanitize-html";
 
 const CHOICES = [
-      "Cash only",
-      "Debit only",
-      "Online ordering",
-      "Corporate lunches",
-      "Vegetarian",
-    ]
+  "Cash only",
+  "Debit only",
+  "Online ordering",
+  "Corporate lunches",
+  "Vegetarian",
+];
 
 const homePage = async (req, res) => {
   const trucks = await truckHandler.getAllTrucks();
@@ -25,6 +26,11 @@ const addTruck = async (req, res) => {
 
 const createTruck = async (req, res) => {
   const truckData = req.body;
+  truckData.name = sanitize(truckData.name, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
+  console.log("truckData: ", truckData);
   const truck = await truckHandler.createTruck(truckData);
   req.flash("success", `/${truck.slug} added successfully!`);
   // res.redirect(`/foodtruck/${truck.slug}`);
@@ -95,8 +101,8 @@ const getTruckBySlug = async (req, res, next) => {
 
   if (!truck) return next();
 
-  res.render("foodtruck", { title: `${truck.name}`, truck})
-}
+  res.render("foodtruck", { title: `${truck.name}`, truck });
+};
 
 export default {
   addTruck,
