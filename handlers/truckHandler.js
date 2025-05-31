@@ -1,7 +1,6 @@
 import Truck from "../models/truckModel.js";
 
 const createTruck = async (truckData) => {
-  console.log("Truck data in handler: ", truckData);
   return await Truck.create(truckData);
 };
 
@@ -25,8 +24,8 @@ const deleteTruck = async (id) => {
 };
 
 const getOneTruckBySlug = async ({ slug }) => {
-  return await Truck.findOne({ slug }).lean()
-}
+  return await Truck.findOne({ slug }).lean();
+};
 
 export default {
   createTruck,

@@ -39,8 +39,8 @@
           </form>
         </td>
         <% } else { %>
-          <td><button class="btn btn-light disabled">-</button></td>
-          <td><button class="btn btn-light disabled">-</button></td>
+        <td><button class="btn btn-light disabled">-</button></td>
+        <td><button class="btn btn-light disabled">-</button></td>
         <% } %>
       </tr>
       <% }) %>
@@ -49,12 +49,3 @@
 </div>
 
 <%- include('./partials/footer') %>
-
-<!-- <% console.log('>>locals is: ', locals) %>
-    <h1><%= title %></h1>
-    <p><%= u.siteName %></p>
-    <p><%= u.dump(u.menu) %></p>
-    <p><%- u.icon("activity") %></p>
-    <p><%- u.datefns.format(new Date(), "'Today is a ', eeee") %></p>
-    <p><%= currentPath %></p> -->
-
